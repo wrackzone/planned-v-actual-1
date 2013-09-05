@@ -80,7 +80,11 @@
                     table.setCell(i, 4, '' + value.ActualVelocity); // ActualVelocity
                     table.setCell(i, 5, '' + value.Resources);      // PlannedVelocity
                     //table.setCell(i, 6, '' + ( value.PlanEstimate > 0 ? Math.round( ( value.ActualVelocity / value.PlanEstimate) * 100):0));
-                    table.setCell(i, 6, '' + ( ( value.Resources != null && value.Resources > 0 ) ? Math.round( ( value.ActualVelocity / value.Resources ) * 100):0)); // %
+                    var v =  ( value.Resources != null && value.Resources > 0 ) ? Math.round( ( value.ActualVelocity / value.Resources ) * 100):0;
+                    // table.setCell(i, 6, '' + ( ( value.Resources != null && value.Resources > 0 ) ? Math.round( ( value.ActualVelocity / value.Resources ) * 100):0)); // %
+                    value = "<div style='" + colorCodeForValue(v) + "'>" + v + "</div>";
+                    table.setCell(i, 6, '' + value); // %
+
                     table.setCell(i, 7, "<span class='" + colorClass + "'>" + value.ActualBurndown + "</span>"); // ActualBurndown
                     table.setCell(i, 8, "<span class='greenText'>" + value.PlannedBurndown + "</span>"); // PlannedBurndown
                     i++;
@@ -157,6 +161,15 @@
                 });
     
                 showTable(releasePlanEstimate);
+            };
+            
+            var colorCodeForValue = function(value) {
+                if (value >= 80)
+                    return 'text-align:center;color:white;background-color:green';
+                if (value >= 75 && value < 80)
+                    return 'text-align:center;color:black;background-color:yellow';
+                else
+                    return 'text-align:center;color:white;background-color:red'
             };
     
             var aggregateData = function(results) {
