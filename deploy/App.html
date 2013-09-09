@@ -4,7 +4,7 @@
 <head>
   <title>Planned vs Actual Burndown</title>
   <meta name="Name" content="App: Planned vs Actual Burndown" />
-  <meta name="Version" content="2012.11.19" />
+  <meta name="Version" content="2013.9.9" />
   <meta name="Vendor" content="Rally Software" />
 
   <script type ="text/javascript" src="https://rally1.rallydev.com/apps/1.32/sdk.js"></script>
@@ -82,9 +82,9 @@
                     //table.setCell(i, 6, '' + ( value.PlanEstimate > 0 ? Math.round( ( value.ActualVelocity / value.PlanEstimate) * 100):0));
                     var v =  ( value.Resources != null && value.Resources > 0 ) ? Math.round( ( value.ActualVelocity / value.Resources ) * 100):0;
                     // add % label
-                    v = v + "%";
+                    //v = v + "%";
                     // table.setCell(i, 6, '' + ( ( value.Resources != null && value.Resources > 0 ) ? Math.round( ( value.ActualVelocity / value.Resources ) * 100):0)); // %
-                    value = "<div style='" + colorCodeForValue(v) + "'>" + v + "</div>";
+                    value = "<div style='" + colorCodeForValue(v) + "'>" + v +"%" + "</div>";
                     table.setCell(i, 6, '' + value); // %
 
                     table.setCell(i, 7, "<span class='" + colorClass + "'>" + (value.ActualBurndown!=undefined ? value.ActualBurndown :"") + "</span>"); // ActualBurndown
